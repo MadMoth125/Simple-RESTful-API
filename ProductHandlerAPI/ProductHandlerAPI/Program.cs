@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using ProductHandlerAPI.Data;
+
 namespace ProductHandlerAPI
 {
 	public class Program
@@ -7,6 +10,10 @@ namespace ProductHandlerAPI
 			var builder = WebApplication.CreateBuilder(args);
 
 			// Add services to the container.
+			builder.Services.AddDbContext<ApiContext>(options =>
+			{
+				options.UseInMemoryDatabase("ProductDB");
+			});
 
 			builder.Services.AddControllers();
 			// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
